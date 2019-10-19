@@ -18,7 +18,7 @@ var shootstrategy = new ROSLIB.Topic({
 function PublishTopicshootstrategy(value) {
     //console.log(checked);
     var msg = new ROSLIB.Message({
-      data:value
+        data: value
     });
     shootstrategy.publish(msg);
 }
@@ -30,7 +30,7 @@ var double_point = new ROSLIB.Topic({
 });
 function PublishTopicdouble(double_point_color) {
     var msg = new ROSLIB.Message({
-      data:double_point_color
+        data: double_point_color
     });
     double_point.publish(msg);
 }
@@ -42,7 +42,7 @@ var moving = new ROSLIB.Topic({
 });
 function PublishTopicmoving() {
     var msg = new ROSLIB.Message({
-      data:true
+        data: true
     });
     moving.publish(msg);
 }
@@ -69,7 +69,7 @@ function PublishTopicCmdVel(vec3) {
     cmdVel.publish(twist);
     PublishTopicmoving();
 }
-function shop_robot(){
+function shop_robot() {
     var twist = new ROSLIB.Message({
         linear: {
             x: parseFloat(0),
@@ -103,59 +103,59 @@ var TopicColor = new ROSLIB.Topic({
     messageType: 'std_msgs/Int32'
 });*/
 function Color_Disable(mode) {
-    switch(mode) {
+    switch (mode) {
         case 0:
-            if(document.getElementById('Red_disable').checked == true){
+            if (document.getElementById('Red_disable').checked == true) {
                 console.log("Red_disable");
                 let box = [0, 0, 0, 0, 0, 0];
-                Pub_Color(mode,box); 
-            }else {
+                Pub_Color(mode, box);
+            } else {
                 console.log("Red_enable");
-                Pub_Color(mode,RedBox);     
+                Pub_Color(mode, RedBox);
             }
             break;
         //====================
         case 1:
-            if(document.getElementById('Blue_disable').checked == true){
+            if (document.getElementById('Blue_disable').checked == true) {
                 console.log("Blue_disable");
                 let box = [0, 0, 0, 0, 0, 0];
-                Pub_Color(mode,box); 
-            }else {
+                Pub_Color(mode, box);
+            } else {
                 console.log("Blue_enable");
-                Pub_Color(mode,BlueBox);     
+                Pub_Color(mode, BlueBox);
             }
             break;
         //====================
         case 2:
-            if(document.getElementById('Yellow_disable').checked == true){
+            if (document.getElementById('Yellow_disable').checked == true) {
                 console.log("Yellow_disable");
                 let box = [0, 0, 0, 0, 0, 0];
-                Pub_Color(mode,box); 
-            }else {
+                Pub_Color(mode, box);
+            } else {
                 console.log("Yellow_enable");
-                Pub_Color(mode,YellowBox);     
+                Pub_Color(mode, YellowBox);
             }
             break;
         //====================
         case 3:
-            if(document.getElementById('White_disable').checked == true){
+            if (document.getElementById('White_disable').checked == true) {
                 console.log("White_disable");
                 let box = [0, 0, 0, 0, 0, 0];
-                Pub_Color(mode,box); 
-            }else {
+                Pub_Color(mode, box);
+            } else {
                 console.log("White_enable");
-                Pub_Color(mode,WhiteBox);     
+                Pub_Color(mode, WhiteBox);
             }
             break;
         //====================
         case 4:
-            if(document.getElementById('Black_disable').checked == true){
+            if (document.getElementById('Black_disable').checked == true) {
                 console.log("Black_disable");
                 let box = [0, 0, 0, 0, 0, 0];
-                Pub_Color(mode,box); 
-            }else {
+                Pub_Color(mode, box);
+            } else {
                 console.log("Black_enable");
-                Pub_Color(mode,BlackBox);     
+                Pub_Color(mode, BlackBox);
             }
             break;
         //====================
@@ -168,51 +168,51 @@ function Change_HSVmode() {
     let camera2 = document.getElementById('Camera2').checked;
     switch (mode) {
         case 0:
-            if(camera1){
+            if (camera1) {
                 for (var i = 0; i < 6; i++) {
                     document.getElementsByName('HSVElement')[i].value = RedBox[i];
                     document.getElementsByName('HSVLabelElement')[i].innerText = RedBox[i];
                 }
-                Pub_Color(mode,RedBox);
+                Pub_Color(mode, RedBox);
             }
-            if(camera2){
+            if (camera2) {
                 for (var i = 0; i < 6; i++) {
                     document.getElementsByName('HSVElement')[i].value = RedGoalBox[i];
                     document.getElementsByName('HSVLabelElement')[i].innerText = RedGoalBox[i];
                 }
-                Pub_Color(5,RedGoalBox);
+                Pub_Color(5, RedGoalBox);
             }
             break;
         case 1:
-            if(camera1){
+            if (camera1) {
                 for (var i = 0; i < 6; i++) {
                     document.getElementsByName('HSVElement')[i].value = BlueBox[i];
                     document.getElementsByName('HSVLabelElement')[i].innerText = BlueBox[i];
                 }
-                Pub_Color(mode,BlueBox);
+                Pub_Color(mode, BlueBox);
             }
-            if(camera2){
-                 for (var i = 0; i < 6; i++) {
+            if (camera2) {
+                for (var i = 0; i < 6; i++) {
                     document.getElementsByName('HSVElement')[i].value = BlueGoalBox[i];
                     document.getElementsByName('HSVLabelElement')[i].innerText = BlueGoalBox[i];
                 }
-                Pub_Color(6,BlueGoalBox);
+                Pub_Color(6, BlueGoalBox);
             }
             break;
         case 2:
-            if(camera1){
+            if (camera1) {
                 for (var i = 0; i < 6; i++) {
                     document.getElementsByName('HSVElement')[i].value = YellowBox[i];
                     document.getElementsByName('HSVLabelElement')[i].innerText = YellowBox[i];
                 }
-                Pub_Color(mode,YellowBox);
+                Pub_Color(mode, YellowBox);
             }
-            if(camera2){
+            if (camera2) {
                 for (var i = 0; i < 6; i++) {
                     document.getElementsByName('HSVElement')[i].value = YellowGoalBox[i];
                     document.getElementsByName('HSVLabelElement')[i].innerText = YellowGoalBox[i];
                 }
-                Pub_Color(7,YellowGoalBox);
+                Pub_Color(7, YellowGoalBox);
             }
             break;
         case 3:
@@ -220,14 +220,14 @@ function Change_HSVmode() {
                 document.getElementsByName('HSVElement')[i].value = WhiteBox[i];
                 document.getElementsByName('HSVLabelElement')[i].innerText = WhiteBox[i];
             }
-            Pub_Color(mode,WhiteBox);
+            Pub_Color(mode, WhiteBox);
             break;
         case 4:
             for (var i = 0; i < 6; i++) {
                 document.getElementsByName('HSVElement')[i].value = BlackBox[i];
                 document.getElementsByName('HSVLabelElement')[i].innerText = BlackBox[i];
             }
-            Pub_Color(mode,BlackBox);
+            Pub_Color(mode, BlackBox);
             break;
     }
     Open_Camera('mask');
@@ -240,59 +240,59 @@ function Set_HSV() {
     switch (mode) {
         case 0:
             document.getElementById('Red_disable').checked = false;
-            if(camera1){
+            if (camera1) {
                 for (var i = 0; i < 6; i++) {
                     RedBox[i] = parseInt(document.getElementsByName('HSVElement')[i].value);
                 }
                 if (Topic_HSV_Flag)
                     console.log('Topic RedHSV = ' + RedBox);
-                Pub_Color(mode,RedBox);
+                Pub_Color(mode, RedBox);
             }
-            if(camera2){
+            if (camera2) {
                 for (var i = 0; i < 6; i++) {
                     RedGoalBox[i] = parseInt(document.getElementsByName('HSVElement')[i].value);
                 }
                 if (Topic_HSV_Flag)
                     console.log('Topic RedHSV = ' + RedGoalBox);
-                Pub_Color(5,RedGoalBox);
+                Pub_Color(5, RedGoalBox);
             }
             break;
-        case 1:        
+        case 1:
             document.getElementById('Blue_disable').checked = false;
-            if(camera1){
+            if (camera1) {
                 for (var i = 0; i < 6; i++) {
                     BlueBox[i] = parseInt(document.getElementsByName('HSVElement')[i].value);
                 }
                 if (Topic_HSV_Flag)
                     console.log('Topic BlueHSV = ' + BlueBox);
-                Pub_Color(mode,BlueBox);
+                Pub_Color(mode, BlueBox);
             }
-            if(camera2){
+            if (camera2) {
                 for (var i = 0; i < 6; i++) {
                     BlueGoalBox[i] = parseInt(document.getElementsByName('HSVElement')[i].value);
                 }
                 if (Topic_HSV_Flag)
                     console.log('Topic BlueHSV = ' + BlueGoalBox);
-                Pub_Color(6,BlueGoalBox);
+                Pub_Color(6, BlueGoalBox);
             }
             break;
         case 2:
             document.getElementById('Yellow_disable').checked = false;
-            if(camera1){
+            if (camera1) {
                 for (var i = 0; i < 6; i++) {
                     YellowBox[i] = parseInt(document.getElementsByName('HSVElement')[i].value);
                 }
                 if (Topic_HSV_Flag)
                     console.log('Topic YellowHSV = ' + YellowBox);
-                Pub_Color(mode,YellowBox);
+                Pub_Color(mode, YellowBox);
             }
-            if(camera2){
+            if (camera2) {
                 for (var i = 0; i < 6; i++) {
                     YellowGoalBox[i] = parseInt(document.getElementsByName('HSVElement')[i].value);
                 }
                 if (Topic_HSV_Flag)
                     console.log('Topic YellowHSV = ' + YellowGoalBox);
-                Pub_Color(7,YellowGoalBox);
+                Pub_Color(7, YellowGoalBox);
             }
             break;
         case 3:
@@ -302,7 +302,7 @@ function Set_HSV() {
             }
             if (Topic_HSV_Flag)
                 console.log('Topic WhiteHSV = ' + WhiteBox);
-            Pub_Color(mode,WhiteBox);
+            Pub_Color(mode, WhiteBox);
             break;
         case 4:
             document.getElementById('Black_disable').checked = false;
@@ -311,13 +311,13 @@ function Set_HSV() {
             }
             if (Topic_HSV_Flag)
                 console.log('Topic BlackHSV = ' + BlackBox);
-            Pub_Color(mode,BlackBox);
+            Pub_Color(mode, BlackBox);
             break;
     }
-    
+
 }
 
-function Pub_Color(mode,box) {
+function Pub_Color(mode, box) {
     /*
      var Color = new ROSLIB.Message({
         ColorMode: mode,
@@ -328,12 +328,12 @@ function Pub_Color(mode,box) {
         BlackHSVBox: BlackBox,
     });
 */
-  for (var i = 0; i < 6; i++) {
-                console.log(box[i]);
-            }
+    for (var i = 0; i < 6; i++) {
+        console.log(box[i]);
+    }
     let Color = new ROSLIB.Message({
-       mode: mode,
-       data: box
+        mode: mode,
+        data: box
     });
     TopicColor.publish(Color);
 }
@@ -354,16 +354,16 @@ function Set_center() {
         center[i] = parseInt(document.getElementsByName('VisionParamElement')[i].value);
     }
     let msg = new ROSLIB.Message({
-       data: center
+        data: center
     });
 
     console.log('Topic Center = ' + center);
     let camera1 = document.getElementById('Camera1').checked;
     let camera2 = document.getElementById('Camera2').checked;
-    if(camera1==true){
+    if (camera1 == true) {
         TopicCenter.publish(msg);
     }
-    if(camera2==true){
+    if (camera2 == true) {
         TopicCenter2.publish(msg);
     }
 }
@@ -401,11 +401,11 @@ var fps = new ROSLIB.Topic({
     name: '/tb3/fps',
     messageType: 'std_msgs/Float32'
 });
-fps.subscribe(function(msg) {
+fps.subscribe(function (msg) {
     var framerate;
     let camera1 = document.getElementById('Camera1').checked;
     let camera2 = document.getElementById('Camera2').checked;
-    if(camera1){
+    if (camera1) {
         framerate = Math.round(msg.data);
         document.getElementsByName('FpsElement')[0].innerText = framerate;
     }
@@ -416,11 +416,11 @@ var fps2 = new ROSLIB.Topic({
     name: '/tb3/fps2',
     messageType: 'std_msgs/Float32'
 });
-fps2.subscribe(function(msg) {
+fps2.subscribe(function (msg) {
     var framerate;
     let camera1 = document.getElementById('Camera1').checked;
     let camera2 = document.getElementById('Camera2').checked;
-    if(camera2){
+    if (camera2) {
         framerate = Math.round(msg.data);
         document.getElementsByName('FpsElement')[0].innerText = framerate;
     }
@@ -431,13 +431,13 @@ var Monitor = new ROSLIB.Topic({
     name: '/tb3/object',
     messageType: 'std_msgs/Int32MultiArray'
 });
-Monitor.subscribe(function(msg) {
+Monitor.subscribe(function (msg) {
     var MBox = [];
 
-    MBox=msg.data;
+    MBox = msg.data;
     let camera1 = document.getElementById('Camera1').checked;
     let camera2 = document.getElementById('Camera2').checked;
-    if(camera1){
+    if (camera1) {
         for (let i = 0; i < 12; i++) {
             document.getElementsByName('MonitorElement')[i].innerText = MBox[i];
         }
@@ -449,13 +449,13 @@ var Monitor2 = new ROSLIB.Topic({
     name: '/tb3/object2',
     messageType: 'std_msgs/Int32MultiArray'
 });
-Monitor2.subscribe(function(msg) {
+Monitor2.subscribe(function (msg) {
     var MBox = [];
 
-    MBox=msg.data;
+    MBox = msg.data;
     let camera1 = document.getElementById('Camera1').checked;
     let camera2 = document.getElementById('Camera2').checked;
-    if(camera2){
+    if (camera2) {
         for (let i = 0; i < 12; i++) {
             document.getElementsByName('MonitorElement')[i].innerText = MBox[i];
         }
@@ -467,31 +467,31 @@ var catchball = new ROSLIB.Topic({
     name: '/tb3/catch',
     messageType: 'std_msgs/Int32MultiArray'
 });
-catchball.subscribe(function(msg) {
+catchball.subscribe(function (msg) {
     let Box = [];
     let Catch = 'False';
     let Color = 'None';
-    Box=msg.data;
-    if(Box[0]==1){
+    Box = msg.data;
+    if (Box[0] == 1) {
         Catch = 'True';
-        if(Box[1]==0){
+        if (Box[1] == 0) {
             Color = 'Red';
         }
-        if(Box[1]==1){
+        if (Box[1] == 1) {
             Color = 'Blue';
         }
-        if(Box[1]==2){
+        if (Box[1] == 2) {
             Color = 'Yellow';
         }
-        if(Box[1]==3){
+        if (Box[1] == 3) {
             Color = 'White';
         }
-        if(Box[1]==4){
+        if (Box[1] == 4) {
             Color = 'Black';
         }
     }
     document.getElementsByName('CatchElement')[0].innerText = Color;
- 
+
 });
 //=========================================================
 var Topicreset = new ROSLIB.Topic({
@@ -513,7 +513,7 @@ var TopicStart = new ROSLIB.Topic({
 });
 
 function strategy_start(num) {
-	num=parseInt(num);
+    num = parseInt(num);
     let msg = new ROSLIB.Message({
         data: num
     });
@@ -527,7 +527,7 @@ var Topicarm = new ROSLIB.Topic({
 });
 
 function arm(num) {
-	num=parseInt(num);
+    num = parseInt(num);
     let msg = new ROSLIB.Message({
         data: num
     });
@@ -541,12 +541,12 @@ var Topicbattery = new ROSLIB.Topic({
     messageType: 'sensor_msgs/BatteryState'
 });
 
-Topicbattery.subscribe(function(msg) {
-    let batter_percent=Math.min(Math.max(Math.floor((msg.voltage-11.1)*100/(12.4-11.1)),0),100);
-    if(batter_percent<20){
+Topicbattery.subscribe(function (msg) {
+    let batter_percent = Math.min(Math.max(Math.floor((msg.voltage - 11.1) * 100 / (12.4 - 11.1)), 0), 100);
+    if (batter_percent < 20) {
         document.getElementById('batteryid').style.color = "red";
         document.getElementById('batteryid2').style.color = "red";
-    }else{
+    } else {
         document.getElementById('batteryid').style.color = "black";
         document.getElementById('batteryid2').style.color = "black";
     }
@@ -558,20 +558,20 @@ var odomcall = new ROSLIB.Topic({
     name: '/motion/odom',
     messageType: 'nav_msgs/Odometry'
 });
-odomcall.subscribe(function(msg) {
-    let x=0;
-    let y=0;
-    let angle=0;
+odomcall.subscribe(function (msg) {
+    let x = 0;
+    let y = 0;
+    let angle = 0;
 
-    let _x=0;
-    let _y=0;
-    let _z=0;
-    let _w=0;
+    let _x = 0;
+    let _y = 0;
+    let _z = 0;
+    let _w = 0;
 
-    x=msg.pose.pose.position.x;
-    x=Math.floor(x*100)/100;
-    y=msg.pose.pose.position.y;
-    y=Math.floor(y*100)/100;
+    x = msg.pose.pose.position.x;
+    x = Math.floor(x * 100) / 100;
+    y = msg.pose.pose.position.y;
+    y = Math.floor(y * 100) / 100;
     document.getElementsByName('StrategyElement')[0].innerText = x;
     document.getElementsByName('StrategyElement')[1].innerText = y;
 
@@ -580,8 +580,8 @@ odomcall.subscribe(function(msg) {
     _z = msg.pose.pose.orientation.z;
     _w = msg.pose.pose.orientation.w;
 
-    angle = Math.atan2(2 * (_x*_y + _w*_z), _w*_w + _x*_x - _y*_y - _z*_z)/3.14159*180;
-    angle = Math.floor(angle*10)/10;
+    angle = Math.atan2(2 * (_x * _y + _w * _z), _w * _w + _x * _x - _y * _y - _z * _z) / 3.14159 * 180;
+    angle = Math.floor(angle * 10) / 10;
     document.getElementsByName('StrategyElement')[2].innerText = angle;
 
 });
