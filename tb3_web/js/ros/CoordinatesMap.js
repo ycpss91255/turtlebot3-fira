@@ -31,12 +31,13 @@ function Norm_Angle(angle) { //confirm angle range is -360 ~ 360
     angle = angle / 180 * Math.PI; //degrees to radius
     return angle;
 }
-function painting(mouse_x, mouse_y, mouse_angle) { //painting coordinate in the webpage
+function painting(mouse_x, mouse_y, mouse_angle ,color =false) { //painting coordinate in the webpage
     line_x = mouse_x - 20 * Math.sin(mouse_angle); //set line is up and meets the Right-hand rule
     line_y = mouse_y - 20 * Math.cos(mouse_angle);
     ctx.beginPath(); //start setting painting path
     ctx.lineWidth = 2;
-    ctx.strokeStyle = "rgb(55, 0, 255)";
+    (color) ?
+        (ctx.strokeStyle = "rgb(255, 0, 0)") : (ctx.strokeStyle = "rgb(55, 0, 255)")
     ctx.arc(mouse_x, mouse_y, 15, 0, 2 * Math.PI);
     ctx.moveTo(mouse_x, mouse_y);
     ctx.lineTo(line_x, line_y);

@@ -511,9 +511,14 @@ var TopicStart = new ROSLIB.Topic({
     name: 'motion/tb3/strategy/start',
     messageType: 'std_msgs/Int32'
 });
-
+var car_painting = false;
 function strategy_start(num) {
     num = parseInt(num);
+    if (num == 0) {
+        car_painting = false
+    } else if (num == 1) {
+        car_painting = true
+    }
     let msg = new ROSLIB.Message({
         data: num
     });
@@ -558,6 +563,7 @@ var odomcall = new ROSLIB.Topic({
     name: '/motion/odom',
     messageType: 'nav_msgs/Odometry'
 });
+var car_clear = false;
 odomcall.subscribe(function (msg) {
     let x = 0;
     let y = 0;
@@ -572,17 +578,35 @@ odomcall.subscribe(function (msg) {
     x = Math.floor(x * 100) / 100;
     y = msg.pose.pose.position.y;
     y = Math.floor(y * 100) / 100;
+    // console.log(x *128, y *130);
+    x_ = origin[0] - Math.round(y * 130);
+    y_ = origin[1] - Math.round(x * 128);
     document.getElementsByName('StrategyElement')[0].innerText = x;
     document.getElementsByName('StrategyElement')[1].innerText = y;
-
     _x = msg.pose.pose.orientation.x;
     _y = msg.pose.pose.orientation.y;
     _z = msg.pose.pose.orientation.z;
     _w = msg.pose.pose.orientation.w;
 
-    angle = Math.atan2(2 * (_x * _y + _w * _z), _w * _w + _x * _x - _y * _y - _z * _z) / 3.14159 * 180;
-    angle = Math.floor(angle * 10) / 10;
+    angle = parseFloat((Math.atan2(2 * (_x * _y + _w * _z),
+        _w * _w + _x * _x - _y * _y - _z * _z) / 3.14159 * 180).toFixed(1));
     document.getElementsByName('StrategyElement')[2].innerText = angle;
-
+    (angle < 0) ?
+        (angle_ = (360 - Math.abs(Math.round(angle)))) : (angle_ = Math.round(angle))
+    angle_ = angle_ / 180 * Math.PI;
+    ctx.clearRect(0, 0, map.width, map.height); //clear canvas
+    painting(x_, y_, angle_, true);
+    if (car_painting) {
+        car_clear = false;
+        ctx.clearRect(0, 0, map.width, map.height); //clear canvas
+        All_paint();
+        painting(x_, y_, angle_, true);
+    } else {
+        if (!car_clear) {
+            car_clear = true;
+            ctx.clearRect(0, 0, map.width, map.height); //clear canvas
+            All_paint();
+        }
+    }
 });
 
